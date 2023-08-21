@@ -8,6 +8,7 @@ exports.up = function(knex) {
             table.increments('id')
             table.string("title").unique().notNullable();
             table.string("description").notNullable();
+            table.string("category").notNullable();
             table.float("price");
             table.text("image-url")
         })
