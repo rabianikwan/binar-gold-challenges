@@ -9,6 +9,16 @@ class DishesController {
         return res.json({ data })
     }
 
+    async createDish(req, res) {
+        const { title, description, category, price, imageUrl } = req.body
+        const dish = await dishesModels.createDish(title, description, category, price, imageUrl)
+        res.status(201)
+            .json({
+                message : "dish has been create",
+                dish : dish
+            })
+    }
+
 }
 
 const dishesController = new DishesController()
