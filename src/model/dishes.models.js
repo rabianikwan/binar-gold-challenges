@@ -1,4 +1,3 @@
-
 import db from "../config/db.knex";
 import dishDto from "./dto/create-dish.dto";
 
