@@ -11,14 +11,10 @@ class DishesModels {
     }
 
     async getById(id) {
-        try {
-            return db(this.tableName)
-                .where({
-                    id : id
-                }).select()
-        } catch (e) {
-            console.error(e)
-        }
+        return db(this.tableName)
+            .where({
+                id : id
+            }).select()
     }
 
     async createDish(title, description, category, price, imageUrl) {

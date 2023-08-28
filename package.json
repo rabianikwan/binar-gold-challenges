@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "babel-node src/index.js",
+    "dev": "nodemon --exec babel-node src/index.js",
     "migrate": "npx knex migrate:latest"
   },
   "keywords": [],
@@ -23,6 +24,7 @@
     "@babel/cli": "^7.22.10",
     "@babel/core": "^7.22.10",
     "@babel/node": "^7.22.10",
-    "@babel/preset-env": "^7.22.10"
+    "@babel/preset-env": "^7.22.10",
+    "nodemon": "^3.0.1"
   }
 }
