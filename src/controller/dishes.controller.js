@@ -1,4 +1,6 @@
 import DishesModels from "../model/dishes.models";
+import {msgOk} from "../utils/okHandler";
+import {ErrorServer, ErrorUserInput} from "../utils/errorHelper";
 
 const dishesModels = new DishesModels()
 class DishesController {
@@ -6,17 +8,13 @@ class DishesController {
     constructor() {}
     async getAll(req, res) {
         const data = await dishesModels.getAll();
-        return res.json({ data })
+        return msgOk(res, 200, "retrieve all dishes", data)
     }
 
     async createDish(req, res) {
         const { title, description, category, price, imageUrl } = req.body
         const dish = await dishesModels.createDish(title, description, category, price, imageUrl)
-        res.status(201)
-            .json({
-                message : "dish has been create",
-                dish : dish
-            })
+        return msgOk(res, 201, "dish has been created", dish)
     }
 
 }

@@ -1,6 +1,7 @@
 import db from "../config/db.knex";
 import dishDto from "./dto/create-dish.dto";
 
+
 class DishesModels {
     tableName = "dishes"
     constructor() {}
@@ -10,10 +11,14 @@ class DishesModels {
     }
 
     async getById(id) {
-        return db(this.tableName)
-            .where({
-                id : id
-            })
+        try {
+            return db(this.tableName)
+                .where({
+                    id : id
+                }).select()
+        } catch (e) {
+            console.error(e)
+        }
     }
 
     async createDish(title, description, category, price, imageUrl) {
@@ -22,6 +27,24 @@ class DishesModels {
         return data
     }
 
+    // update
+    async updatePrice(id, price) {
+        return db(this.tableName).where({ id }).update({ price })
+    }
+
+    async updateDish(id, title, description, price, imageUrl) {
+        return (await this.getById(id)).update({
+            title,
+            description,
+            price,
+            imageUrl
+        })
+    }
+
+    // delete
+    async deleteDish(id) {
+        return db(this.tableName).where({id}).delete();
+    }
 }
 
 export default DishesModels;

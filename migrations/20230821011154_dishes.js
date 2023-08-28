@@ -5,7 +5,7 @@
 exports.up = function(knex) {
     return knex.schema
         .createTable('dishes', (table) => {
-            table.uuid("id", {primaryKey: true}).defaultTo(knex.raw("uuid_generate_v4()"));
+            table.uuid("id");
             table.string("title").unique().notNullable();
             table.string("description").notNullable();
             table.string("category").notNullable();
