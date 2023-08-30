@@ -5,8 +5,11 @@ const router = Router()
 const dishesAPI = '/'
 
 router.get(dishesAPI, dishesController.getAll)
-router.get(dishesAPI + ":id", dishesController.getById)
 router.post(dishesAPI, dishesController.createDish)
+
+router.get(dishesAPI + ":id", dishesController.getById)
+router.patch(dishesAPI + ":id", dishesController.updateDish)
+router.delete(dishesAPI + ':id', dishesController.deleteDish)
 
 
 export default router;

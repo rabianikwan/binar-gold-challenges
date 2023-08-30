@@ -32,14 +32,12 @@ class DishesModels {
     }
 
     // update
-    async updatePrice(id, price) {
-        return db(this.tableName).where({ id }).update({ price })
-    }
 
-    async updateDish(id, title, description, price, imageUrl) {
-        return (await this.getById(id)).update({
+    async updateDish(id, title, description, category, price, imageUrl) {
+        return db(this.tableName).where({ id }).update({
             title,
             description,
+            category,
             price,
             imageUrl
         })
@@ -47,7 +45,7 @@ class DishesModels {
 
     // delete
     async deleteDish(id) {
-        return db(this.tableName).where({id}).delete();
+        return db(this.tableName).where({ id }).delete();
     }
 }
 

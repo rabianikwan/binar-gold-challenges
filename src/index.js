@@ -11,11 +11,12 @@ const port = process.env.PORT || 5000;
 // limit each IP to 10 request/windowMs / 15 min
 const protectDdos = rateLimit({
     windowMs: 15 * 60 * 1000,
-    max: 10 
+    max: 20
 });
 
 // security 
 app.use(helmet())
+app.use(protectDdos)
 
 // middleware
 app.use(express.json())

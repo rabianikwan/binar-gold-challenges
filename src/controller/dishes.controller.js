@@ -38,6 +38,45 @@ class DishesController {
             console.log(e)
         }
     }
+
+    async updateDish(req, res) {
+        try {
+            const { id } = req.params
+            const { title, description, category, price, imageUrl } = req.body
+            let data = await dishesModels.getById(id)
+            if (data) {
+                await dishesModels.updateDish(id, title, description, category, price, imageUrl)
+                return msgOk(res, 202, "dish has been updated", {
+                    id: data.id,
+                    title,
+                    description,
+                    category,
+                    price,
+                    imageUrl
+                })
+            }
+        } catch (e) {
+            console.log(e.code)
+            if (e.code === '22P02') return errorResp(res, 400, "id not found")
+        }
+    }
+    
+    async deleteDish(req, res) {
+        try {
+            const { id } = req.params
+            console.log(id)
+            const data = await dishesModels.getById(id)
+            if (data) {
+                await dishesModels.deleteDish(id)
+                return msgOk(res, 202, "dish has been deleted", [])
+            } else {
+                return errorResp(res, 400, "dish cannot be deleted because id cannot found")
+            }
+        } catch (e) {
+            console.log(e.code)
+            if (e.code === '22P02') return errorResp(res, 400, "id not found")
+        }
+    }
 }
 
 const dishesController = new DishesController()
