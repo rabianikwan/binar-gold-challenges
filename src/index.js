@@ -17,7 +17,7 @@ const protectDdos = rateLimit({
 
 // security 
 app.use(helmet())
-app.use(protectDdos)
+// app.use(protectDdos)
 
 //
 app.use(express.static("./src/public"))
