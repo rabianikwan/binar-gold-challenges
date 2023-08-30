@@ -1,18 +1,13 @@
 import {v4} from "uuid";
-import DishesModels from "../dishes.models";
 
 class CreateDishDto {
-    constructor() {}
-    createDto(title, description, category, price, imageUrl) {
-        return {
-            id: v4(),
-            title: title.toUpperCase(),
-            description: description.toLowerCase(),
-            category: category.toLowerCase(),
-            price : Number(price),
-            imageUrl: imageUrl
-        }
+    constructor(title, description, category, price, imageUrl) {
+        this.id = v4();
+        this.title = String(title);
+        this.description = String(description);
+        this.category = String(category);
+        this.price = Number(price);
+        this.imageUrl = String(imageUrl);
     }
 }
-const dishDto = new CreateDishDto()
-export default dishDto;
+export default CreateDishDto;

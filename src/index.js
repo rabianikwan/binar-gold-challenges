@@ -5,6 +5,7 @@ import rateLimit from 'express-rate-limit';
 import dishesRoutes from "./router/dishes.routes";
 
 dotenv.config()
+
 const app = express();
 const port = process.env.PORT || 5000;
 // limit each IP to 10 request/windowMs / 15 min

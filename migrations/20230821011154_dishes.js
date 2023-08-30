@@ -6,11 +6,11 @@ exports.up = function(knex) {
     return knex.schema
         .createTable('dishes', (table) => {
             table.uuid("id");
-            table.string("title").unique().notNullable();
-            table.string("description").notNullable();
-            table.string("category").notNullable();
-            table.float("price").notNullable();
-            table.text("imageUrl").notNullable();
+            table.string("title").unique();
+            table.string("description");
+            table.string("category");
+            table.float("price");
+            table.text("imageUrl");
         })
   
 };
