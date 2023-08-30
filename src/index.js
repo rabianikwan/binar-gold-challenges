@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import dishesRoutes from "./router/dishes.routes";
+import frontendRoutes from "./router/view.routes"
 
 dotenv.config()
 
@@ -18,11 +19,15 @@ const protectDdos = rateLimit({
 app.use(helmet())
 app.use(protectDdos)
 
-// middleware
+//
+app.use(express.static("./src/public"))
 app.use(express.json())
 app.use(express.urlencoded({ extended : true}))
 
-// routes
+// api
 app.use(dishesRoutes)
+
+// frontend
+app.use(frontendRoutes)
 
 app.listen(port, () => console.log('server has run http://localhost:' + port))

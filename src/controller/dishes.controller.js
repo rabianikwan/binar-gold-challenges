@@ -11,15 +11,16 @@ class DishesController {
         const data = await dishesModels.getAll();
         console.timeEnd("time fetching all data")
         return msgOk(res, 200, "retrieve all dishes", data)
-
     }
 
     async getById(req, res) {
         const { id } = req.params
+        console.log(id)
         try {
             const data = await dishesModels.getById(id)
             if (data) return msgOk(res, 200, "dish has found", data)
         } catch (e) {
+            console.log(e)
             if (e.code === '22P02') return errorResp(res, 400, "id not found")
         }
     }
@@ -34,8 +35,8 @@ class DishesController {
 
             return msgOk(res, 201, "dish has been created", dish)
         } catch (e) {
+            console.log(e.code)
             if (e.code === "23505") return errorResp(res, 400, "dish already exist")
-            console.log(e)
         }
     }
 

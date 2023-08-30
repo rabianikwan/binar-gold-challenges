@@ -18,21 +18,16 @@ class DishesModels {
     }
 
     async createDish(title, description, category, price, imageUrl) {
-        try {
-            const data = new CreateDishDto(title, description, category, price, imageUrl)
-            if (!data.title) return {message: "title cannot be empty"}
-            if (!data.description) return {message: "description cannot be empty"}
-            if (!data.price) return {message: "price must be numbers or not empty"}
-            if (!data.imageUrl) return {message: "image url cannot be empty"}
-            await db(this.tableName).insert(data);
-            return data
-        } catch (e) {
-            console.log(e)
-        }
+        const data = new CreateDishDto(title, description, category, price, imageUrl)
+        if (!data.title) return {message: "title cannot be empty"}
+        if (!data.description) return {message: "description cannot be empty"}
+        if (!data.price) return {message: "price must be numbers or not empty"}
+        if (!data.imageUrl) return {message: "image url cannot be empty"}
+        await db(this.tableName).insert(data);
+        return data
     }
 
     // update
-
     async updateDish(id, title, description, category, price, imageUrl) {
         return db(this.tableName).where({ id }).update({
             title,
