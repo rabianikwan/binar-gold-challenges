@@ -7,8 +7,7 @@
     "start": "babel-node src/index.js",
     "dev": "nodemon --exec babel-node src/index.js",
     "migrate": "npx knex migrate:latest",
-    "rollback": "npx knex migrate:rollback",
-    "prepare": "husky install"
+    "rollback": "npx knex migrate:rollback"
   },
   "keywords": [],
   "author": "",
@@ -29,7 +28,6 @@
     "@babel/preset-env": "^7.22.10",
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
-    "husky": "^8.0.0",
     "nodemon": "^3.0.1"
   }
 }

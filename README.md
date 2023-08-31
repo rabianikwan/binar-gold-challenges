@@ -15,6 +15,8 @@
 + pg
 + uuid
 + babel
++ commitlint
++ husky
 
 # How To Run
 Install all dependency by:
