@@ -10,6 +10,37 @@ class DishesModels {
             .select("*");
     }
 
+    async find(
+        { limit, page} = { limit: 10, page:1 },
+        { id, title, description, category, price, imageUrl } = {
+            id: "",
+            title: "",
+            description: "",
+            category: "",
+            price: "",
+            imageUrl: ""
+        }) {
+        try {
+            let query = db
+                .select("id", "title", "description", "category", "price", "imageUrl")
+                .table(this.tableName)
+
+            if (id) query = query.whereLike("id", id);
+            if (title) query = query.whereLike("title", title);
+            if (description) query = query.whereLike("description", description);
+            if (category) query = query.whereLike("category", category);
+            if (price) query = query.whereLike("price", price);
+            if (imageUrl) query = query.whereLike("imageUrl", imageUrl);
+
+            // get total
+            let queryTotal = db(this.tableName).count("*")
+
+        } catch (e) {
+            console.log(e)
+        }
+
+    }
+
     async getById(id) {
         return db(this.tableName)
             .where({
