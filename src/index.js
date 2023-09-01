@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import dishesRoutes from "./router/dishes.routes";
 import frontendRoutes from "./router/view.routes"
+import cors from 'cors'
 
 dotenv.config()
 
@@ -19,7 +20,8 @@ const protectDdos = rateLimit({
 app.use(helmet())
 // app.use(protectDdos)
 
-//
+// middleware
+app.use(cors({origin: "*"}))
 app.use(express.static("./src/public"))
 app.use(express.json())
 app.use(express.urlencoded({ extended : true}))

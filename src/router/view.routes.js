@@ -7,7 +7,8 @@ router.get('/', (req, res) => {
 })
 
 router.get("/menu", (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "/views", "menu.html"))
+    res.sendFile(path.join(__dirname, "..", "/views", "add-menu.html"))
 })
+
 
 export default router;
