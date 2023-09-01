@@ -7,12 +7,14 @@
     "start": "babel-node src/index.js",
     "dev": "nodemon --exec babel-node src/index.js",
     "migrate": "npx knex migrate:latest",
-    "rollback": "npx knex migrate:rollback"
+    "rollback": "npx knex migrate:rollback",
+    "seeds": "npx knex seed:run"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "5.3.1",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-rate-limit": "^6.9.0",

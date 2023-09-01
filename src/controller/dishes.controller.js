@@ -7,10 +7,29 @@ class DishesController {
     tableName = "dishes";
     constructor() {}
     async getAll(req, res) {
-        console.time("time fetching all data")
-        const data = await dishesModels.getAll();
-        console.timeEnd("time fetching all data")
-        return msgOk(res, 200, "retrieve all dishes", data)
+        try {
+            console.time("time fetching all data")
+            const filterReq = {};
+            const query = req.query;
+            if (query.limit) filterReq.limit = Number(query.limit);
+            if (query.page) filterReq.page = Number(query.page);
+            if (query.search) filterReq.search = query.search;
+
+            const dishes = await dishesModels.find(
+                {
+                    limit: filterReq.limit,
+                    page: filterReq.page
+                },
+                {
+                    title: filterReq.search
+                }
+            );
+            console.timeEnd("time fetching all data")
+            return msgOk(res, 200, "get all dishes", dishes)
+
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     async getById(req, res) {
@@ -48,7 +67,7 @@ class DishesController {
             if (data) {
                 await dishesModels.updateDish(id, title, description, category, price, imageUrl)
                 return msgOk(res, 202, "dish has been updated", {
-                    id: data.id,
+                    id,
                     title,
                     description,
                     category,

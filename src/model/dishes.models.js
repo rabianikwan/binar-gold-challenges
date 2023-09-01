@@ -1,5 +1,6 @@
 import db from "../config/db.knex";
 import CreateDishDto from "./dto/create-dish.dto";
+import {ErrorServer} from "../utils/errorHelper";
 
 
 class DishesModels {
@@ -34,9 +35,25 @@ class DishesModels {
 
             // get total
             let queryTotal = db(this.tableName).count("*")
+            if (id) queryTotal = queryTotal.where({ id })
+            if (title) queryTotal = queryTotal.where({ title })
+            if (category) queryTotal = queryTotal.where({ category })
 
+            // assign total
+            let total = 0
+            const totalQuery = await queryTotal
+            if (totalQuery.length > 0) total = Number(totalQuery[0].count);
+
+            const dishes = await query;
+            return {
+                dishes,
+                total,
+                page,
+                has_next: page * limit < total
+            }
         } catch (e) {
             console.log(e)
+            throw new ErrorServer(e.detail)
         }
 
     }
@@ -53,6 +70,7 @@ class DishesModels {
         if (!data.title) return {message: "title cannot be empty"}
         if (!data.description) return {message: "description cannot be empty"}
         if (!data.price) return {message: "price must be numbers or not empty"}
+        if (!data.category) return {message: "category must not empty"}
         if (!data.imageUrl) return {message: "image url cannot be empty"}
         await db(this.tableName).insert(data);
         return data
