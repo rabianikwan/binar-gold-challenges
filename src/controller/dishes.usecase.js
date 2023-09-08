@@ -1,6 +1,6 @@
 import DishesModels from "../model/dishes.models";
-import {msgOk} from "../utils/okHandler";
-import {errorResp} from "../utils/errorRes";
+import { msgOk } from "../utils/okHandler";
+import { errorResp } from "../utils/errorRes";
 
 const dishesModels = new DishesModels()
 class DishesUsecase {

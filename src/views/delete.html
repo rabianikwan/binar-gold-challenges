@@ -65,7 +65,7 @@
                 <li><a class="nav-link scrollto" href="/#gallery">Gallery</a></li>
                 <li class="dropdown"><a href=""><span>Admin</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
-                        <li><a href="/menu">Add Menus</a></li>
+                        <li><a href="/menu">Add Menu</a></li>
                         <li><a href="/update">Update Menu</a></li>
                         <li><a href="/delete">Delete Menu</a></li>
                     </ul>
@@ -73,6 +73,7 @@
 
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
         </nav><!-- .navbar -->
         <a href="#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex">Book a table</a>
 
@@ -87,7 +88,7 @@
                 <h2>Update Dish</h2>
                 <ol>
                     <li><a href="/">Home</a></li>
-                    <li>Update Menu</li>
+                    <li>Delete Menu</li>
                 </ol>
             </div>
 
@@ -107,45 +108,8 @@
                         <div class="invalid-feedback">Dish Name is Blank!</div>
                     </div>
 
-
-                    <div class="col-md-10 col-xl-6 col-sm-12 mx-2 my-2">
-                        <input class="form-control" type="text" name="title" placeholder="Dish Name" required>
-                        <div class="valid-feedback">This dish is valid, Thank You!</div>
-                        <div class="invalid-feedback">Dish Name is Blank!</div>
-                    </div>
-
-                    <div class="col-md-10 col-xl-6 col-sm-12 mx-2 my-2">
-                        <input class="form-control" type="text" name="desc" placeholder="Dish Description" required>
-                        <div class="valid-feedback">Thank You!</div>
-                        <div class="invalid-feedback">Cannot be blank!</div>
-                    </div>
-
-                    <div class="col-md-10 col-xl-6 col-sm-12 mx-2 my-2">
-                        <select class="form-select" required name="category">
-                            <option selected disabled value="">Category</option>
-                            <option value="appetizers">Appetizers</option>
-                            <option value="main courses">Main Courses</option>
-                            <option value="beverages">Beverages</option>
-                        </select>
-                        <div class="valid-feedback">Thank You!</div>
-                        <div class="invalid-feedback">Please select!</div>
-                    </div>
-
-                    <div class="col-md-10 col-xl-6 col-sm-12 mx-2 my-2">
-                        <input class="form-control" type="number" name="price" placeholder="Price Rp 10.000 - 100.000" min="10000" max="100000" required>
-                        <div class="valid-feedback">Thank You!</div>
-                        <div class="invalid-feedback">Cannot be blank!</div>
-                    </div>
-
-                    <div class="col-md-10 col-xl-6 col-sm-12 mx-2 my-2">
-                        <input class="form-control" type="text" name="imageUrl" placeholder="image URL" required>
-                        <div class="valid-feedback">Thank You!</div>
-                        <div class="invalid-feedback">Cannot be blank!</div>
-                    </div>
-
-
                     <div class="form-button mt-2 mx-2">
-                        <a onclick="onClick()" id="submit" type="submit" class="btn btn-warning">Update Dish</a>
+                        <a onclick="onClick()" id="submit" type="submit" class="btn btn-danger">Delete Dish</a>
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -168,30 +132,12 @@
 <!-- End Footer -->
 <script>
     function onClick() {
-        const title = document.getElementsByName("title")[0].value
-        const description = document.getElementsByName("desc")[0].value
-        const category = document.getElementsByName("category")[0].value
-        const price = document.getElementsByName("price")[0].value
-        const imageUrl = document.getElementsByName("imageUrl")[0].value
         const id = document.getElementsByName("id")[0].value
-        console.log(description)
-
-        const dish = {
-            id,
-            title,
-            description,
-            category,
-            price,
-            imageUrl
-        }
-
-        console.log(dish)
 
         const requestOptions = {
-            method: 'PATCH',
+            method: 'DELETE',
             mode: "cors",
             cache: "no-cache",
-            body: JSON.stringify(dish),
             redirect: 'follow',
             headers: {
                 "Content-Type": "application/json"
@@ -203,11 +149,9 @@
             .then(result => {
                 console.log(result)
                     alert("Dish")
-                    window.location.replace('/update')
+                    window.location.replace('/delete')
             })
             .catch(error => console.log('error', error));
-
-
 
     }
 </script>
