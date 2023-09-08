@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node src/index.js",
+    "database:prepare": "pnpm migrate && pnpm seeds",
     "dev": "nodemon --exec babel-node src/index.js",
     "migrate": "pnpm exec knex migrate:latest",
     "rollback": "pnpm exec knex migrate:rollback",
-    "seeds": "pnpm exec knex seed:run"
+    "seeds": "pnpm exec knex seed:run",
+    "start": "babel-node src/index.js"
   },
   "keywords": [],
   "author": "",

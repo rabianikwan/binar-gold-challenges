@@ -1,10 +1,9 @@
-# Restaurant Booking App
-
-# Project Purpose
-
 # Goals
++ App Internal Restaurant + Restaurant Profiles
 
 # Design
++ bootsrap
++ CSS
 
 # Tools
 + dotenv
@@ -20,11 +19,12 @@
 
 # How To Run
 Install all dependency by:
+```bash
+npm i -g pnpm && pnpm install 
 ```
-pnpm install
-```
+
 copy or create .env file
-```
+```bash
 cp env.example .env
 ```
 config .env file(example) :
@@ -36,9 +36,14 @@ DB_USER=root
 DB_PASS=root
 DB_NAME=binar
 ```
-run project by : 
+migrate & seed your database:
+```bash
+pnpm database:prepare
 ```
-pnpm dev or pnpm start
+
+run project by : 
+```bash
+pnpm dev
 ```
 # API Documentation
 go to this link :
