@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Restaurantly Bootstrap Template - Inner Page</title>
+  <title>Delight</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -28,14 +28,8 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Restaurantly
-  * Updated: Jul 27 2023 with Bootstrap v5.3.1
-  * Template URL: https://bootstrapmade.com/restaurantly-restaurant-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
+
 
 <body>
 
@@ -61,9 +55,7 @@
   <header id="header" class="fixed-top d-flex align-items-cente">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
 
-      <h1 class="logo me-auto me-lg-0"><a href="index.html">Delight</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <h1 class="logo me-auto me-lg-0"><a href="/">Delight</a></h1>
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
@@ -73,7 +65,8 @@
           <li><a class="nav-link scrollto" href="/#gallery">Gallery</a></li>
           <li class="dropdown"><a href=""><span>Admin</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Add Menus</a></li>
+              <li><a href="/menu">Add Menus</a></li>
+              <li><a href="/update">Update Menu</a></li>
               <li><a href="/cashier">Cashier</a></li>
             </ul>
           </li>
@@ -91,9 +84,9 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Inner Page</h2>
+          <h2>Create Dish</h2>
           <ol>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li>Add Menus</li>
           </ol>
         </div>
@@ -103,10 +96,53 @@
 
     <section class="inner-page">
       <div class="container">
-        <p>
-          Example inner page template
-        </p>
-      </div>
+          <div class="row">
+              <h3>Create Dish</h3>
+                  <p>Fill in the data below.</p>
+                    <div class="col-10">
+                    <div class="col-md-10 col-xl-6 col-sm-12 mx-2 my-2">
+                      <input class="form-control" type="text" name="title" placeholder="Dish Name" required>
+                      <div class="valid-feedback">This dish is valid, Thank You!</div>
+                      <div class="invalid-feedback">Dish Name is Blank!</div>
+                    </div>
+
+                    <div class="col-md-10 col-xl-6 col-sm-12 mx-2 my-2">
+                      <input class="form-control" type="text" name="desc" placeholder="Dish Description" required>
+                      <div class="valid-feedback">Thank You!</div>
+                      <div class="invalid-feedback">Cannot be blank!</div>
+                    </div>
+
+                    <div class="col-md-10 col-xl-6 col-sm-12 mx-2 my-2">
+                      <select class="form-select" required name="category">
+                        <option selected disabled value="">Category</option>
+                        <option value="appetizers">Appetizers</option>
+                        <option value="main courses">Main Courses</option>
+                        <option value="beverages">Beverages</option>
+                      </select>
+                      <div class="valid-feedback">Thank You!</div>
+                      <div class="invalid-feedback">Please select!</div>
+                    </div>
+
+                      <div class="col-md-10 col-xl-6 col-sm-12 mx-2 my-2">
+                        <input class="form-control" type="number" name="price" placeholder="Price Rp 10.000 - 100.000" min="10000" max="100000" required>
+                        <div class="valid-feedback">Thank You!</div>
+                        <div class="invalid-feedback">Cannot be blank!</div>
+                      </div>
+
+                      <div class="col-md-10 col-xl-6 col-sm-12 mx-2 my-2">
+                        <input class="form-control" type="text" name="imageUrl" placeholder="image URL" required>
+                        <div class="valid-feedback">Thank You!</div>
+                        <div class="invalid-feedback">Cannot be blank!</div>
+                      </div>
+
+
+                    <div class="form-button mt-2 mx-2">
+                      <a onclick="onClick()" id="submit" type="submit" class="btn btn-primary">Create Dish</a>
+                    </div>
+                      </div>
+            <div class="col-2"></div>
+          </div>
+        </div>
     </section>
 
   </main><!-- End #main -->
@@ -122,9 +158,51 @@
     </div>
   </footer>
   <!-- End Footer -->
+  <script>
+    function onClick() {
+      const title = document.getElementsByName("title")[0].value
+      const description = document.getElementsByName("desc")[0].value
+      const category = document.getElementsByName("category")[0].value
+      const price = document.getElementsByName("price")[0].value
+      const imageUrl = document.getElementsByName("imageUrl")[0].value
+      console.log(description)
+
+      const dish = {
+        title,
+        description,
+        category,
+        price,
+        imageUrl
+      }
+
+      const requestOptions = {
+        method: 'POST',
+        mode: "cors",
+        cache: "no-cache",
+        body: JSON.stringify(dish),
+        redirect: 'follow',
+        headers: {
+          "Content-Type": "application/json"
+        }
+      };
+
+      fetch("http://localhost:5000/api/v1/dishes", requestOptions)
+              .then(response => response.text())
+              .then(result => {
+                console.log(result)
+                alert("Dish has been created")
+                window.location.replace('/menu')
+              })
+              .catch(error => console.log('error', error));
+
+
+
+    }
+  </script>
 
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/aos/aos.js"></script>

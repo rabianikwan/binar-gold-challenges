@@ -6,9 +6,9 @@
   "scripts": {
     "start": "babel-node src/index.js",
     "dev": "nodemon --exec babel-node src/index.js",
-    "migrate": "npx knex migrate:latest",
-    "rollback": "npx knex migrate:rollback",
-    "seeds": "npx knex seed:run"
+    "migrate": "pnpm exec knex migrate:latest",
+    "rollback": "pnpm exec knex migrate:rollback",
+    "seeds": "pnpm exec knex seed:run"
   },
   "keywords": [],
   "author": "",

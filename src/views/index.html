@@ -67,6 +67,7 @@
           <li class="dropdown"><a href="#"><span>Admin</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="/menu">Add Menus</a></li>
+              <li><a href="/update">Update Menu</a></li>
               <li><a href="/cashier">Cashier</a></li>
             </ul>
           </li>
@@ -151,13 +152,18 @@
         <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
 
           <div class="col-lg-6 menu-item filter-starters">
+
             <img src="assets/img/menu/lobster-bisque.jpg" class="menu-img" alt="">
             <div class="menu-content">
               <a href="#">Lobster Bisque</a><span>$5.95</span>
+
             </div>
             <div class="menu-ingredients">
               Lorem, deren, trataro, filede, nerada
             </div>
+          </div>
+
+          <div class="col-lg-6 menu-item filter-specialty">
           </div>
 
           <div class="col-lg-6 menu-item filter-specialty">
@@ -255,7 +261,7 @@
           <p>Book a Table</p>
         </div>
 
-        <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+        <form action="#" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
           <div class="row">
             <div class="col-lg-4 col-md-6 form-group">
               <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
@@ -481,6 +487,7 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
+  <script src="assets/js/fetch.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>

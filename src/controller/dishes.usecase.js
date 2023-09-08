@@ -3,7 +3,7 @@ import {msgOk} from "../utils/okHandler";
 import {errorResp} from "../utils/errorRes";
 
 const dishesModels = new DishesModels()
-class DishesController {
+class DishesUsecase {
     tableName = "dishes";
     constructor() {}
     async getAll(req, res) {
@@ -67,7 +67,6 @@ class DishesController {
             if (data) {
                 await dishesModels.updateDish(id, title, description, category, price, imageUrl)
                 return msgOk(res, 202, "dish has been updated", {
-                    id,
                     title,
                     description,
                     category,
@@ -99,5 +98,5 @@ class DishesController {
     }
 }
 
-const dishesController = new DishesController()
+const dishesController = new DishesUsecase()
 export default dishesController;

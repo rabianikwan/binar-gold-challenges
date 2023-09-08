@@ -1,5 +1,5 @@
 import { Router } from "express";
-import dishesController from "../controller/dishes.controller";
+import dishesController from "../controller/dishes.usecase";
 
 const router = Router()
 const dishesAPI = '/api/v1/dishes'

@@ -17,7 +17,7 @@ const protectDdos = rateLimit({
 });
 
 // security 
-app.use(helmet())
+// app.use(helmet())
 // app.use(protectDdos)
 
 // middleware

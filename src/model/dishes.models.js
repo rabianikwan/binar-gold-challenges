@@ -1,6 +1,6 @@
 import db from "../config/db.knex";
-import CreateDishDto from "./dto/create-dish.dto";
-import {ErrorServer} from "../utils/errorHelper";
+import { ErrorServer } from "../utils/errorHelper";
+import {v4} from "uuid";
 
 
 class DishesModels {
@@ -66,14 +66,21 @@ class DishesModels {
     }
 
     async createDish(title, description, category, price, imageUrl) {
-        const data = new CreateDishDto(title, description, category, price, imageUrl)
-        if (!data.title) return {message: "title cannot be empty"}
-        if (!data.description) return {message: "description cannot be empty"}
-        if (!data.price) return {message: "price must be numbers or not empty"}
-        if (!data.category) return {message: "category must not empty"}
-        if (!data.imageUrl) return {message: "image url cannot be empty"}
-        await db(this.tableName).insert(data);
-        return data
+        const dish = {
+            id: v4(),
+            title,
+            description,
+            category,
+            price,
+            imageUrl
+        }
+        if (!dish.title) return {message: "title cannot be empty"}
+        if (!dish.description) return {message: "description cannot be empty"}
+        if (!dish.price) return {message: "price must be numbers or not empty"}
+        if (!dish.category) return {message: "category must not empty"}
+        if (!dish.imageUrl) return {message: "image url cannot be empty"}
+        await db(this.tableName).insert(dish);
+        return dish
     }
 
     // update
