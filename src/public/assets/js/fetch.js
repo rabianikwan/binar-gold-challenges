@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:3000/api/v1/dishes'
+const apiUrl = 'http://localhost:5000/api/v1/dishes'
 async function getData(api) {
     try {
         const pickOne = ['filter-starters', 'filter-speciality', 'filter-salads'];
@@ -12,12 +12,12 @@ async function getData(api) {
             const dishPrice = JSON.stringify(dish.price)
             const dishCategory = JSON.stringify(dish.category)
             const dishImageUrl = JSON.stringify(dish.imageUrl)
-            const random = pickOne[Math.trunc(pickOne.length * Math.random())]
-            console.log(dishTitle, dishDescription, dishPrice, dishCategory, dishImageUrl)
+            console.log(dishImageUrl)
+
             menu.insertAdjacentHTML('afterend', `
   
-            <div class="col-lg-6 menu-item ${random} mb-5">
-            <img src="${dishImageUrl}" class="menu-img" alt="${dishTitle}">
+            <div class="col-lg-6 menu-item mb-5">
+            <img src=${dishImageUrl} class="menu-img" alt="${dishTitle}">
             <div class="menu-content">
               <a href="#">${dishTitle}</a><span>Rp. ${dishPrice}</span>
             </div>
